@@ -116,7 +116,7 @@ cd backend && mvn -DskipTests package
 
 ## 文档与约定
 
-- 接口路径与语义以 **`backend` 中 Controller 及 `frontend/src/api.js`** 为准；`接口清单.md` 可能滞后于实现。
+- 接口路径与语义以 **`接口清单.md`** 与 **`backend` 中 Controller** 为准；`frontend/src/api.js` 中部分路径可能尚未在后端实现。
 - 根目录 `.gitignore` 已忽略 `target/`、`node_modules/`、本地密钥文件等，克隆后需在本地自行配置数据源与可选中间件。
 
 ## 本地校验（参考）
