@@ -1,0 +1,316 @@
+/**
+ * 全局主题：年轻 / 活跃 / 速度感
+ * 在 element-plus 样式之后加载，覆盖 --el-* 变量与布局壳层。
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,600&display=swap");
+
+:root {
+  --app-font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --app-bg: #0a0e17;
+  --app-surface: rgba(255, 255, 255, 0.04);
+  --app-surface-2: rgba(255, 255, 255, 0.07);
+  --app-text: #e8edf5;
+  --app-text-muted: #8b9cb3;
+  --app-accent: #00e5c8;
+  --app-accent-2: #7c5cff;
+  --app-accent-hot: #ff4d8d;
+  --app-glow: rgba(0, 229, 200, 0.35);
+
+  --el-color-primary: #00c4ae;
+  --el-color-primary-light-3: #33d4c0;
+  --el-color-primary-light-5: #5ddecf;
+  --el-color-primary-light-7: #8ae8dc;
+  --el-color-primary-light-8: #a8eee5;
+  --el-color-primary-light-9: #d9faf6;
+  --el-color-primary-dark-2: #009d8b;
+
+  --el-border-radius-base: 10px;
+  --el-border-radius-small: 8px;
+  --el-border-radius-round: 999px;
+  --el-font-family: var(--app-font);
+  --el-bg-color: #ffffff;
+  --el-bg-color-page: #f0f4fa;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--app-font);
+  -webkit-font-smoothing: antialiased;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+#app {
+  min-height: 100vh;
+}
+
+/* 主内容区卡片：略抬升、冷色底 */
+.app-main .el-card {
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 12px 40px -12px rgba(0, 100, 120, 0.12);
+  overflow: hidden;
+}
+
+.app-main .el-card__header {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.98) 100%);
+}
+
+.app-main .el-page-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px -8px rgba(0, 80, 100, 0.1);
+}
+
+.app-main .el-page-header__title {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* 顶栏速度线动画 */
+@keyframes app-speed-sweep {
+  0% {
+    transform: translateX(-40%) skewX(-12deg);
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.22;
+  }
+  100% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 0.12;
+  }
+}
+
+.app-header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(118deg, #070b12 0%, #121c3a 38%, #0d3d5c 72%, #063a42 100%);
+  border-bottom: 1px solid rgba(0, 229, 200, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.app-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -28deg,
+    transparent,
+    transparent 14px,
+    rgba(0, 229, 200, 0.04) 14px,
+    rgba(0, 229, 200, 0.04) 15px
+  );
+  pointer-events: none;
+}
+
+.app-header__glow {
+  position: absolute;
+  width: 55%;
+  height: 200%;
+  top: -50%;
+  right: -10%;
+  background: radial-gradient(ellipse at center, rgba(0, 229, 200, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+  animation: app-speed-sweep 14s ease-in-out infinite;
+}
+
+.app-header__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.app-header__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(0, 229, 200, 0.35);
+}
+
+.app-header__title span.accent {
+  background: linear-gradient(105deg, #5cf0ff 0%, #00e5c8 45%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.app-header__tagline {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.app-header__tagline strong {
+  color: var(--app-accent);
+  font-weight: 800;
+}
+
+/* 侧栏 */
+.app-aside {
+  background: linear-gradient(180deg, #0c1118 0%, #0a0f16 50%, #080c12 100%);
+  border-right: 1px solid rgba(0, 229, 200, 0.12);
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.25);
+}
+
+.app-aside__brand {
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.app-aside__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--app-accent) 0%, var(--app-accent-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #041016;
+  box-shadow: 0 0 24px var(--app-glow);
+}
+
+.app-aside__hint {
+  margin-top: 10px;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--app-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.app-aside .el-menu {
+  border-right: none !important;
+  background: transparent !important;
+  padding: 10px 8px 16px;
+}
+
+.app-aside .el-menu-item {
+  margin: 4px 0;
+  border-radius: 10px !important;
+  height: 44px !important;
+  line-height: 44px !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.68) !important;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.app-aside .el-menu-item:hover {
+  background: var(--app-surface-2) !important;
+  color: #fff !important;
+}
+
+.app-aside .el-menu-item.is-active {
+  color: #041016 !important;
+  background: linear-gradient(105deg, #5cf0ff 0%, #00e5c8 55%, #7cf9e8 100%) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 8px 24px -6px rgba(0, 229, 200, 0.55);
+  transform: translateX(2px);
+}
+
+/* 主区：轻量网格 + 冷色氛围 */
+.app-main {
+  position: relative;
+  min-height: calc(100vh - 120px);
+  background-color: #eef2f9;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 100% -20%, rgba(0, 196, 174, 0.12), transparent 50%),
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(124, 92, 255, 0.08), transparent 45%),
+    linear-gradient(180deg, #f4f7fc 0%, #e8eef6 100%);
+}
+
+.app-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.app-main > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 底栏 */
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.45);
+  background: linear-gradient(180deg, #0a0e14 0%, #06080c 100%);
+  border-top: 1px solid rgba(0, 229, 200, 0.12);
+}
+
+.app-footer__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--app-accent);
+  box-shadow: 0 0 12px var(--app-glow);
+  animation: app-pulse 2s ease-in-out infinite;
+}
+
+@keyframes app-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(0.92);
+  }
+}
+
+/* 主按钮更「冲」一点 */
+.el-button--primary {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.el-button--primary.is-plain {
+  --el-button-hover-text-color: #00a896;
+  --el-button-hover-bg-color: rgba(0, 229, 200, 0.12);
+  --el-button-hover-border-color: rgba(0, 229, 200, 0.45);
+}

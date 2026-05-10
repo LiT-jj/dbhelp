@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: database-test-tool
+  jackson:
+    parser:
+      allow-comments: true
+  datasource:
+    url: jdbc:mysql://localhost:5501/dbhelp
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: db1x@NJ+1
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:sql/ddl.sql
+      data-locations: classpath:sql/data.sql
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+
+# 造数：direct=进程内写入；任务 options.transport=rabbitmq 时需将 rabbit.enabled=true 并启动 RabbitMQ。
+dbhelp:
+  generate:
+    transport: rabbitmq
+    rabbit:
+      enabled: true
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+      virtual-host: /
+      queue: dbhelp.gen.batch
+      producer-await-timeout-ms: 3600000
